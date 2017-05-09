@@ -22,4 +22,4 @@ Tracer sometimes fails to resolve Jaeger's address. In such a case run:
 ```bash
 sudo iptables -F
 ```
-and restart applications affected applications.
+and restart affected applications.
