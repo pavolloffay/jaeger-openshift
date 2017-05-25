@@ -30,6 +30,6 @@ openshift cluster (via `oc`). Currently all templates are tested on minishift or
 up`).
 
 ```bash
-minishift start // or oc cluster up, sometimes required oc login -u system:admin
+minishift start // or oc cluster up
 mvn clean verify -Pe2e
 ```
