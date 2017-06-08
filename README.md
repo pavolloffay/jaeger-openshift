@@ -40,14 +40,14 @@ however, your user need to have such permission. It can be achieved by running t
 
 ```bash
 oc login -u system:admin
-oc create -f daemonset-admin.yml
+oc create -f https://raw.githubusercontent.com/jaegertracing/jaeger-openshift/master/production/daemonset-admin.yml
 oadm policy add-role-to-user daemonset-admin developer -n jaeger // note that namespace jaeger has been already created
 ```
 
 Once that is ready, it's only a matter of creating the components from the template:
 ```bash
 oc login -u developer
-oc process -f jaeger-production-template.yml | oc create -n jaeger -f -
+oc process -f https://raw.githubusercontent.com/jaegertracing/jaeger-openshift/master/production/jaeger-production-template.yml | oc create -n jaeger -f -
 ```
 
 ### Persistent storage
