@@ -39,9 +39,12 @@ Jaeger can also be installed as `developer` (or any other user). As the DaemonSe
 however, your user need to have such permission. It can be achieved by running this:
 
 ```bash
+oc login -u developer
+oc new-project jaeger
+
 oc login -u system:admin
 oc create -f https://raw.githubusercontent.com/jaegertracing/jaeger-openshift/master/production/daemonset-admin.yml
-oadm policy add-role-to-user daemonset-admin developer -n jaeger // note that namespace jaeger has been already created
+oc adm policy add-role-to-user daemonset-admin developer -n jaeger // jaeger namespace has been already created and it is accessible by developer user
 ```
 
 Once that is ready, it's only a matter of creating the components from the template:
