@@ -53,6 +53,18 @@
       <version>${version.com.squareup.okhttp3-okhttp}</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.uber.jaeger</groupId>
+      <artifactId>jaeger-core</artifactId>
+      <version>0.19.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.container</groupId>
+      <artifactId>arquillian-container-test-api</artifactId>
+      <version>1.1.13.Final</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <profiles>
