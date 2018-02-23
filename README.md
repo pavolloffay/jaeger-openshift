@@ -111,6 +111,18 @@ appropriate to create a `PersistentVolumeClaim`/`PersistentVolume` and use it in
 Cassandra deployment does not support deleting pods or scaling down, as this might require
 administrative tasks that are dependent on the final deployment architecture.
 
+## Exposing Jaeger-Collector out of Cluster
+Collector is by default accessible only to services running inside the cluster. 
+The easiest is to expose HTTP `jaeger-collector-http` port via OpenShift Route:
+
+```bash
+oc create route edge --service=jaeger-collector --port jaeger-collector-http --insecure-policy=Allow
+```
+
+This allows to send data from clients directly to Collector via HTTP senders. If you want to use Agent then use 
+[ExternalIP or NodePort](https://docs.openshift.com/container-platform/3.3/dev_guide/getting_traffic_into_cluster.htm)
+to expose Collector service.
+
 ## Using a different version
 The templates are using the `latest` version, which is what you probably want at this stage. If you need to
 use a specific Docker image version, specify it via the template parameter `IMAGE_VERSION`, as follows:
