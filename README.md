@@ -123,6 +123,10 @@ This allows to send data from clients directly to Collector via HTTP senders. If
 [ExternalIP or NodePort](https://docs.openshift.com/container-platform/3.3/dev_guide/getting_traffic_into_cluster.htm)
 to expose Collector service.
 
+Note that doing so will open the collector to be used by any external party, who will then 
+be able to create arbitrary spans. 
+It's advisable to put an OAuth Security Proxy in front of the collector and expose this proxy instead.
+
 ## Using a different version
 The templates are using the `latest` version, which is what you probably want at this stage. If you need to
 use a specific Docker image version, specify it via the template parameter `IMAGE_VERSION`, as follows:
