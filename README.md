@@ -113,7 +113,6 @@ administrative tasks that are dependent on the final deployment architecture.
 
 ## Exposing Jaeger-Collector outside of Cluster
 Collector is by default accessible only to services running inside the cluster. 
-
 The easiest approach to expose the collector outside of the cluster is via the `jaeger-collector-http`
 HTTP port using an OpenShift Route:
 
