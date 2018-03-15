@@ -90,7 +90,9 @@ pipeline {
         }
         stage('production-elastic: deploy elasticsearch') {
             steps {
-                sh 'oc create -f production/elasticsearch.yml'
+                sh 'oc create -f https://raw.githubusercontent.com/RHsyseng/docker-rhel-elasticsearch/5.x/es-cluster-deployment.yml'
+                sh 'oc adm policy add-role-to-user view -z elasticsearch'
+                sh 'oc env statefulset/elasticsearch NAMESPACE=`oc project -q`'
             }
         }
         stage('production-elastic: deploy Jaeger') {
