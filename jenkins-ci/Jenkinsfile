@@ -90,9 +90,9 @@ pipeline {
         }
         stage('production-elastic: deploy elasticsearch') {
             steps {
+                sh 'oc delete all,template,daemonset,configmap -l elasticsearch'
+                sh 'oc delete all,template,daemonset,configmap -l elasticsearch-cluster'
                 sh 'oc create -f https://raw.githubusercontent.com/RHsyseng/docker-rhel-elasticsearch/5.x/es-cluster-deployment.yml'
-                sh 'oc adm policy add-role-to-user view -z elasticsearch'
-                sh 'oc env statefulset/elasticsearch NAMESPACE=`oc project -q`'
             }
         }
         stage('production-elastic: deploy Jaeger') {
@@ -123,6 +123,8 @@ pipeline {
         }
         stage('production-elastic: delete all') {
             steps {
+                sh 'oc delete all,template,daemonset,configmap -l elasticsearch'
+                sh 'oc delete all,template,daemonset,configmap -l elasticsearch-cluster'
                 sh 'oc delete all,template,daemonset,configmap -l jaeger-infra'
             }
         }
