@@ -21,6 +21,7 @@ pipeline {
                 sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch'
                 sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch-cluster'
                 sh 'oc delete is/elasticsearch'
+                sh 'oc delete oc delete serviceaccount/elasticsearch'
                 sh 'oc delete all,template,daemonset,configmap -l jaeger-infra'
             }
         }
@@ -127,6 +128,7 @@ pipeline {
                 sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch'
                 sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch-cluster'
                 sh 'oc delete is/elasticsearch'
+                sh 'oc delete oc delete serviceaccount/elasticsearch'
                 sh 'oc delete all,template,daemonset,configmap -l jaeger-infra'
             }
         }
