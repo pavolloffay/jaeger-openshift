@@ -18,10 +18,7 @@ pipeline {
     stages {
         stage('all-in-one: clean environment') {
             steps {
-                sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch'
-                sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch-cluster'
-                sh 'oc delete is/elasticsearch'
-                sh 'oc delete oc delete serviceaccount/elasticsearch'
+                sh 'oc delete https://raw.githubusercontent.com/RHsyseng/docker-rhel-elasticsearch/5.x/es-cluster-deployment.yml --grace-period=1'
                 sh 'oc delete all,template,daemonset,configmap -l jaeger-infra'
             }
         }
@@ -125,10 +122,7 @@ pipeline {
         }
         stage('production-elastic: delete all') {
             steps {
-                sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch'
-                sh 'oc delete all,template,daemonset,configmap -l app=elasticsearch-cluster'
-                sh 'oc delete is/elasticsearch'
-                sh 'oc delete oc delete serviceaccount/elasticsearch'
+                sh 'oc delete https://raw.githubusercontent.com/RHsyseng/docker-rhel-elasticsearch/5.x/es-cluster-deployment.yml --grace-period=1'
                 sh 'oc delete all,template,daemonset,configmap -l jaeger-infra'
             }
         }
